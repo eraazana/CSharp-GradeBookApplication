@@ -21,9 +21,16 @@ namespace GradeBook.GradeBooks
             int hold = (int)Math.Ceiling(Students.Count * .2);
             var grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
 
-            if (grades[hold - 1] <= averageGrade)
+            if (averageGrade >= grades[hold - 1])
                 return 'A';
-            return 'F';
+            else if (averageGrade >= grades[(hold * 2) - 1])
+                return 'B';
+            else if (averageGrade >= grades[(hold * 3) - 1])
+                return 'C';
+            else if (averageGrade >= grades[(hold * 4) - 1])
+                return 'D';
+            else
+                return 'F';
         }
     }
 }
